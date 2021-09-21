@@ -1,0 +1,388 @@
+import java.util.Scanner;
+// criação de classe //
+class Agencia{
+    // declaração de variáveis //
+    String cnpj;
+    String nome;
+   private static int porganho1=45;
+  // métodos de acesso para variável privada //
+    public int getPorganho1()
+    {return this.porganho1;}
+    public void setPorganho1(int p1)
+    {this.porganho1=p1;}
+    // método construtor da classe Agencia //
+    public Agencia(String cnpj, String nome, int porganho1)
+    {
+        this.cnpj=cnpj;
+        this.nome=nome;
+        this.porganho1=porganho1;
+    }
+    
+    
+}
+// criação de classe //
+class Equipe{
+// declaração de variáveis //
+String coordenador;
+String fotografo;
+String estilista;
+String editor;
+    
+}
+// criação de classe //
+class Modelo{
+    // declaração de variáveis //
+    static String nomemodel;
+    static int codmodel;
+    int idade=0;
+    int corolhos;
+    float altura;
+    float peso;
+    int trabalho_ativo;
+    private static int porganho2=35;
+     // métodos de acesso para a variável privada //
+     public int getPorganho2()
+    {return this.porganho2;}
+    public void setPorganho2(int p2)
+    {this.porganho2=p2;}
+    // método que recebe a resposta do usuário em relação o(a) modelo ter algum trabalho em andamento//
+public void Ativo(int resp)
+{if(resp==1){
+    trabalho_ativo=1;}
+    else {trabalho_ativo=0;}
+}
+// sobrecarga do método Ativo, exibi a mensagem que o(a) possui algum trabalho em andamento //
+   public static void Ativo()
+    {
+        {System.out.printf("Há trabalho ativo");
+       
+           
+        }
+    }
+    
+}
+// criação de classe //
+class Projeto{
+// declaração de variáveis //
+    String model;
+    int codequipe;
+    int codprojeto;
+}
+// criação de classe //
+class Empresa{
+  // declaração de variáveis //
+     String nomeemp;
+    String projeto;
+    private float cache;
+    // métodos de acesso para variável privada //
+    public float getCache()
+    {return this.cache;}
+    public void setCache(float c)
+    {this.cache=c;}
+    // método que recebe a porcentagem de ganho da modelo e o cache oferecido pela empresa contratante, calcula o valor a ser pago a modelo de acordo com o mesmo e retorna o valor que será direcionado à agência //
+     public static float Valor(float porganho, float cache)
+    {
+        float pagmodel, pagagencia;
+        pagmodel=cache*(porganho/100);
+        System.out.printf("O valor pago a modelo será de R$ %.2f", pagmodel);
+        pagagencia= cache - pagmodel;
+        return pagagencia;
+        
+       
+    }
+    
+}
+    
+    public class Main { static Scanner ent= new Scanner(System.in);
+    // método que exibi o Menu e retorna a opção escolhida pelo usuário //
+    public static int Menu()
+    {  int op =0;
+    System.out.printf("\n Selecione a opção desejada \n");
+    System.out.printf("\n 1 --> Consultar informações da agência \n ");
+    System.out.printf("\n 2 --> Cadastrar modelo \n ");
+    System.out.printf("\n 3 --> Cadastrar equipe \n");
+    System.out.printf("\n 4 --> Cadastrar empresa \n");
+    System.out.printf("\n 5 --> Consultar modelos \n");
+    System.out.printf("\n 6 --> Consultar projetos \n");
+    System.out.printf("\n 7 --> Consultar empresas \n");
+    System.out.printf("\n -->  \n");
+    op = ent.nextInt();
+    return op;
+  
+        
+    }
+   
+    
+  
+    public static void main(String args[]) {
+    int r;
+    // declaração de variável do tipo Agencia //
+    Agencia a = new Agencia("128.538.554/5555-02", "Charlotte", 45) ;
+    // Criação de vetores de classe e utilização de estrutura de repetição para declarar cada posição //
+   Modelo[] m=new Modelo[10];
+   for(r=0;r<10;r++){
+   m[r]= new Modelo();
+   }
+   Empresa[]e= new Empresa[10];
+   for(r=0;r<10;r++){
+    e[r]=new Empresa();
+   }
+   Equipe[] eq= new Equipe[10];
+   for(r=0;r<10;r++){
+    eq[r]=new Equipe();
+   }
+    Projeto[] p= new Projeto[10];
+   for(r=0;r<10;r++){
+    p[r]=new Projeto();
+   }
+   // declaração de variáveis 
+    int i, resp= 1, t;
+    int opc = 0;
+    int x=1;
+    int tam=0;
+  
+    opc=Menu();
+    // utilização de estrutura de repetição com a condição de que a variável "resp", declarada acima recebendo o valor 1, continue tendo esse valor, caso o usuário na oportunidade de escolher entre 0 e 1, escolha 0, o programa fechará 
+    while(resp!=0){
+// caso a opção escolhida no Menu seja 1 , o programa exibirá as informações sobre a agência:
+    if(opc==1){int p1;
+// utilização do método de acesso para acessar a porcentagem de ganho da agência
+p1=a.getPorganho1();
+    System.out.printf("CNPJ da agencia: %s ", a.cnpj);
+    System.out.printf("Nome da agencia: %s ", a.nome);
+    System.out.printf("Porcentagem de ganho: %d", p1);
+       System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não: \n ");
+         resp=ent.nextInt();
+    // caso o usuário digite 1, o Menu será novamente exibido
+         if(resp==1)
+         {opc=Menu();}
+    }
+    // caso a opção escolhida no Menu seja 2, o programa permitirá o cadastro:
+    if(opc==2)
+       {i=0;
+     // Enquanto o usuário não escolher 0 para a parada de cadastro, o cadastro se repetirá para a adição de novos modelos
+    while (x!=0){
+
+           System.out.printf("\n Informe o nome da modelo: ");
+        // impedindo que o usuário não consiga digitar o nome da modelo devido à sujeira do buffer
+        if (ent.hasNextLine()) {
+            m[i].nomemodel = ent.nextLine();
+        } else {
+            System.out.println("Digite novamente");
+            System.out.println();
+        }
+        m[i].nomemodel= ent.nextLine();
+        System.out.printf("\n Informe o código da modelo: ");
+         m[i].codmodel= ent.nextInt();
+        System.out.printf("\n Informe a idade da modelo: ");
+         m[i].idade= ent.nextInt();
+         System.out.printf("\n Informe a altura da modelo: ");
+         m[i].altura= ent.nextFloat();
+         System.out.printf("\n Informe o peso da modelo: ");
+         m[i].peso= ent.nextFloat();
+         System.out.printf("\n Informe entre as opções abaixo, a cor dos olhos da modelo: ");
+        System.out.printf("\n 1 --> Castanho");
+        System.out.printf("\n 2 --> Verde");
+        System.out.printf("\n 3 --> Azul");
+        System.out.printf("\n 4 --> Preto");
+         m[i].corolhos= ent.nextInt();
+       
+
+        System.out.printf("\n Está trabalhando em algum projeto? 1 para Sim, 0 para Não: \n ");
+         t= ent.nextInt();
+         // o método Ativo receberá o valor respondido na questão acima
+      m[i].Ativo(t);
+      // a posição do vetor mudará a cada cadastro
+      i++;
+// caso a resposta seja 0, o cadastro fechará
+System.out.printf("Deseja cadastrar outra modelo? 1 para Sim, 0 para Não: \n");
+      x= ent.nextInt();}
+    
+       System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não: \n ");
+         resp=ent.nextInt();
+         // caso a resposta seja 0, o programa fechará
+         if(resp==1)
+         {opc=Menu();}
+     
+        
+       } 
+      // caso a opção escolhida seja 5, o programa exibirá as informações da modelo de acordo com o código informado
+      if(opc==5)
+      {int o,z;
+          System.out.printf("\n Informe o código da modelo: ");
+          o=ent.nextInt();
+          // utilização de estrutura de repetição para encontrar a modelo com o código informado
+          for(z=0;z<2;z++)
+          {if(m[z].codmodel==o)
+              {
+          
+         System.out.printf("%s \n", m[z].nomemodel);
+         System.out.printf("%s \n", m[z].codmodel);
+         System.out.printf("%d \n", m[z].idade);
+                  if (m[z].trabalho_ativo==1){
+                      m[z].Ativo();
+              }
+              
+          }
+          }
+         System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não \n ");
+         resp=ent.nextInt();
+         if(resp==1)
+         {opc=Menu();}
+       }  
+       //declaração de variável para a chamada de método
+       float cachepublic=0;
+       // caso a opção escolhida seja 4, o cadastro de empresas será aberto
+        if(opc==4)  
+     { 
+     i=0;
+         x=1;
+         //enquanto o usuário não escolher 0 para parar o cadastramento, esse continuará
+         while(x!=0){
+         System.out.printf("\n Informe o nome da empresa: ");
+        if (ent.hasNextLine()) {
+            e[i].nomeemp =ent.nextLine();
+        } else {
+            System.out.println("Digite novamente");
+            System.out.println();
+        }
+        e[i].nomeemp= ent.nextLine();
+        System.out.printf("\n Informe o Projeto: ");
+         e[i].projeto= ent.nextLine();
+        float c;
+        System.out.printf("\n Informe o cachê: ");
+         c= ent.nextFloat();
+        // chamada do método para acessar a variável cache
+         e[i].setCache(c);
+         // utilização de método de acesso para receber o valor armazenado na variável privada
+         cachepublic=e[i].getCache();
+         
+         i++;
+         
+          int y, j, id;
+          float h, k;
+          System.out.printf("\n Informe o código do projeto: ");
+          p[i].codprojeto= ent.nextInt();
+          System.out.printf("\n Selecione a idade desejada:");
+          id=ent.nextInt();
+         System.out.printf("\n Selecione a cor dos olhos desejada:");
+          System.out.printf("\n 1 --> Castanho");
+        System.out.printf("\n 2 --> Verde");
+        System.out.printf("\n 3 --> Azul");
+        System.out.printf("\n 4 --> Preto");
+         y=ent.nextInt();
+         System.out.printf("\n Selecione a altura desejada:");
+         h=ent.nextFloat();
+         System.out.printf("\n Selecione o peso desejado:");
+        k=ent.nextFloat();
+        char modeladeq='a';
+        // utilização de estruturas de repetição e  condicional para encontrar a modelo com as características selecionadas
+         for(j=0;j<10;j++)
+          {
+          if(m[j].idade==id){
+             if (m[j].corolhos==y)
+             {
+           if(m[j].altura==h){
+               if(m[j].peso==k){
+                   System.out.printf("\n A modelo mais adequada é %s \n", m[j].nomemodel);
+                 modeladeq= 't';
+                 p[i].model=m[j].nomemodel;
+                 
+                System.out.printf("\n O código do projeto é %d \n", p[i].codprojeto);if(modeladeq!='t'){
+                 System.out.printf("\n Não há modelos disponíveis \n");
+             }// caso a modelo seja encontrada, um novo projeto será criado
+             for(j=0;j<tam;j++){
+                 System.out.printf("\n Equipe %s \n", j);
+                 System.out.printf("\n Coordenador(a): %s \n", eq[j].coordenador);
+                 System.out.printf("\n Fotográfo(a): %s \n", eq[j].fotografo);
+                  System.out.printf("\n Estilista: %s \n", eq[j].estilista);
+                   System.out.printf("\n Editor(a): %s \n", eq[j].editor);
+                 
+             }
+             
+             System.out.printf("\n Digite o número da equipe escolhida:");
+             p[i].codequipe=ent.nextInt();
+             
+             }}
+               }
+           }
+          }
+             
+    
+ System.out.printf("Deseja cadastrar outra empresa? 1 para Sim, 0 para Não: \n");
+      x= ent.nextInt();
+}
+         
+// criação de variáveis para receber o valor retornado pelo método
+int p2;
+float vagencia;   
+p2=m[i].getPorganho2();
+    // a função receberá a porcentagem de ganho da modelo e o cachê oferecido pela empresa contratante
+    vagencia = e[i].Valor(p2,cachepublic);
+    System.out.printf(" \n O valor recebido pela agência será de:R$ %.2f", vagencia);
+ System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não: \n");
+         resp=ent.nextInt();
+         if(resp==1)
+         {opc=Menu();}
+    
+}    
+// caso a opção escolhida seja 3, o cadastro de equipe de trabalho será aberto
+      if(opc==3)  
+     { 
+     i=0;
+     
+         x=1;
+         while(x!=0){
+         System.out.printf("\n Informe o coordenador(a) da equipe: ");
+        if (ent.hasNextLine()) {
+            eq[i].coordenador =ent.nextLine();
+        } else {
+            System.out.println("Digite novamente");
+            System.out.println();
+        }
+        eq[i].coordenador= ent.nextLine();
+        System.out.printf("\n Informe o fotográfo(a): ");
+         eq[i].fotografo= ent.nextLine();
+         System.out.printf("\n Informe o/a estilista: ");
+         eq[i].estilista= ent.nextLine();
+         System.out.printf("\n Informe o editor(a): ");
+         eq[i].editor= ent.nextLine();
+         i++;
+         tam++;
+         System.out.printf("Deseja cadastrar outra equipe? 1 para Sim, 0 para Não: \n");
+      x= ent.nextInt();}
+      System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não: \n");
+         resp=ent.nextInt();
+         if(resp==1)
+         {opc=Menu();}
+    }
+    //caso a opção escolhida seja 6, o programa abrirá o acesso as informações sobre os projetos
+     if(opc==6)
+      {int o,z, l;
+          System.out.printf("\n Informe o código do projeto: ");
+          o=ent.nextInt();
+         // utilização de estruturas de repetição e condicional para encontrar as informações de determinado projeto de acordo com o código informado
+          for(z=0;z<2;z++)
+          {if(p[z].codprojeto==o)
+              {
+          
+         System.out.printf("%s \n", p[z].model);
+         System.out.printf("%s \n", p[z].codequipe);
+         l=p[z].codequipe;
+         
+                 System.out.printf("\n Coordenador(a): %s \n", eq[l].coordenador);
+                 System.out.printf("\n Fotográfo(a): %s \n", eq[l].fotografo);
+                  System.out.printf("\n Estilista: %s \n", eq[l].estilista);
+                   System.out.printf("\n Editor(a): %s \n", eq[l].editor);
+         
+              }
+              
+          }
+          
+         System.out.printf("\n Deseja realizar outra operação? 1 para Sim, 0 para Não \n ");
+         resp=ent.nextInt();
+         if(resp==1)
+         {opc=Menu();}
+       }  
+    
+}}}
