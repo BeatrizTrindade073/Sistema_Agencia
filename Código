@@ -216,9 +216,13 @@ System.out.printf("Deseja cadastrar outra modelo? 1 para Sim, 0 para Não: \n");
           {if(m[z].codmodel==o)
               {
           
-         System.out.printf("%s \n", m[z].nomemodel);
-         System.out.printf("%s \n", m[z].codmodel);
-         System.out.printf("%d \n", m[z].idade);
+         System.out.printf("Nome: %s \n", m[z].nomemodel);
+         System.out.printf("Código %s \n", m[z].codmodel);
+         System.out.printf("Idade: %d \n", m[z].idade);
+         System.out.printf("Altura: %.2f \n", m[z].altura);
+         System.out.printf("Peso: %.2f \n", m[z].idade);
+        
+         System.out.printf($
                   if (m[z].trabalho_ativo==1){
                       m[z].Ativo();
               }
@@ -366,8 +370,8 @@ p2=m[i].getPorganho2();
           {if(p[z].codprojeto==o)
               {
           
-         System.out.printf("%s \n", p[z].model);
-         System.out.printf("%s \n", p[z].codequipe);
+         System.out.printf("Modelo escolhida: %s \n", p[z].model);
+         System.out.printf("Código da Equipe: %s \n", p[z].codequipe);
          l=p[z].codequipe;
          
                  System.out.printf("\n Coordenador(a): %s \n", eq[l].coordenador);
