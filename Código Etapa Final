@@ -50,7 +50,7 @@ class Funcionario extends Pessoa{
 
     }
 // criação de classe 
-// classe Equipe herda a classe Funcionario
+// classe Equipe implementa interface Disponivel
 class Equipe implements Disponivel{
 // declaração de atributos
 int codigo;
